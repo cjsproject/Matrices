@@ -18,7 +18,7 @@ if __name__ == '__main__':
     print(B)
 
     # Multiply a row by a constant
-    B.mult(0, 2)
+    B.mult(0, 0.25)
     print(B)
 
     D = deepcopy(B)

@@ -1,3 +1,5 @@
+from fractions import Fraction
+
 class Matrix:
     def __init__(self):
         self.row = 0
@@ -52,4 +54,16 @@ class Matrix:
 
 
     def __str__(self):
-        return str(self.mat_arr)
+        output = ""
+        for row in self.mat_arr:
+            output += "[  "
+            for element in row:
+                if (element % 1.0) > 0:
+                    output += str(Fraction(element))
+                else:
+                    output += str(element)
+                output += "  "
+
+            output += "]\n"
+
+        return output
