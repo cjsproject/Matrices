@@ -44,26 +44,29 @@ class Matrix:
 
         return Matrix(self.mat_arr)
 
-    def multMat(self, matrix_b):
-        if isinstance(matrix_b, Matrix) and self.col == matrix_b.row:
-            temp_mat = []
-            mat_a = self.mat_arr
-            mat_b = matrix_b.mat_arr
-            result = [[sum(a*b for a, b in zip(A_row, B_col)) for B_col in zip(*mat_b)] for A_row in mat_a]
-
-
-        else:
-            raise Exception("must be of type matrix")
-
-        self.mat_arr = result
-        self.__str__()
-        return Matrix(self.mat_arr)
-
     def swap(self, row_a, row_b):
         temp = self.mat_arr[row_a]
         self.mat_arr[row_a] = self.mat_arr[row_b]
         self.mat_arr[row_b] = temp
 
+        return Matrix(self.mat_arr)
+
+    def tpose(self):
+        arr = self.mat_arr
+        temp_mat = [[a for a in col] for col in zip(*arr)]
+
+        self.mat_arr = temp_mat
+        return Matrix(self.mat_arr)
+
+    def multMat(self, matrix_b):
+        if isinstance(matrix_b, Matrix) and self.col == matrix_b.row:
+            mat_a = self.mat_arr
+            mat_b = matrix_b.mat_arr
+            temp_mat = [[sum(a*b for a, b in zip(A_row, B_col)) for B_col in zip(*mat_b)] for A_row in mat_a]
+        else:
+            raise Exception("must be of type matrix and have defined multiplication dim(axm * mxb) = axb")
+
+        self.mat_arr = temp_mat
         return Matrix(self.mat_arr)
 
     def __str__(self):
