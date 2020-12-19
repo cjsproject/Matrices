@@ -33,7 +33,6 @@ if __name__ == '__main__':
     print("A = ", A, "C = ", C, "D = ", D, sep='\n')
 
     A.multMat(Z)
-
     print("A*Z: ", A, sep='\n')
 
     A.tpose()
